@@ -17,7 +17,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
-@RequestMapping()
 public class GithubApiRestController {
 
     public static final String ID = "id";
@@ -42,7 +41,7 @@ public class GithubApiRestController {
             value = "/events",
             produces = "application/json",
             consumes = "application/json")
-    public ResponseEntity<String> addDevices(@RequestBody String data){
+    public ResponseEntity<String> addEvents(@RequestBody String data){
         JSONObject input = new JSONObject(data);
         LOGGER.debug("Got the request as : "+input.toString());
         Long id = input.getLong(ID);
@@ -74,7 +73,7 @@ public class GithubApiRestController {
             method = RequestMethod.GET,
             value = "/events/actors/{id}",
             produces = "application/json")
-    public ResponseEntity<String> addDevices(@PathVariable(ID) long id){
+    public ResponseEntity<String> getEventsWithActor(@PathVariable(ID) long id){
         try{
             JSONArray jsonArray = new JSONArray();
             List<Event> events = eventRepository.getAllByActorId(id);
@@ -103,7 +102,7 @@ public class GithubApiRestController {
     @RequestMapping(method = RequestMethod.GET,
             value = "/events",
             produces = "application/json")
-    public ResponseEntity<String> getEvents(){
+    public ResponseEntity<String> getAllEvents(){
         List<Event> events = eventRepository.findAll();
         JSONArray result = new JSONArray();
         for (Event event:events) {
@@ -121,7 +120,7 @@ public class GithubApiRestController {
     @RequestMapping(method = RequestMethod.GET,
             value = "/actors",
             produces = "application/json")
-    public ResponseEntity<String> getActors(){
+    public ResponseEntity<String> getAllActors(){
         List<Actor> actors = actorRepository.findAll();
         JSONArray result = new JSONArray();
         for (Actor actor:actors) {
@@ -149,7 +148,7 @@ public class GithubApiRestController {
     @RequestMapping(method = RequestMethod.DELETE,
             value = "/erase",
             produces = "application/json")
-    public ResponseEntity<String> deleteAllDevices(){
+    public ResponseEntity<String> deleteAllEvents(){
         eventRepository.deleteAll();
         return new ResponseEntity<>("", HttpStatus.OK);
     }
