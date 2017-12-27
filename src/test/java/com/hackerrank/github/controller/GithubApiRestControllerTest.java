@@ -27,6 +27,7 @@ import java.util.List;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -111,7 +112,6 @@ public class GithubApiRestControllerTest {
                 .andExpect(jsonPath("$[0].repo.id", is(event2.getRepo().getId().intValue())))
                 .andExpect(jsonPath("$[0].repo.name", is(event2.getRepo().getName())))
                 .andExpect(jsonPath("$[0].repo.url", is(event2.getRepo().getUrl())))
-                //.andExpect(jsonPath("$[0].created_at", is(event1.getCreated_at())))
                 .andExpect(jsonPath("$[1].type", is(event3.getType())))
                 .andExpect(jsonPath("$[1].id", is(event3.getId().intValue())))
                 .andExpect(jsonPath("$[1].actor.login", is(event3.getActor().getLogin())))
@@ -120,7 +120,6 @@ public class GithubApiRestControllerTest {
                 .andExpect(jsonPath("$[1].repo.id", is(event3.getRepo().getId().intValue())))
                 .andExpect(jsonPath("$[1].repo.name", is(event3.getRepo().getName())))
                 .andExpect(jsonPath("$[1].repo.url", is(event3.getRepo().getUrl())))
-                //.andExpect(jsonPath("$[0].created_at", is(event1.getCreated_at())))
                 .andExpect(jsonPath("$[1].type", is(event3.getType())));
     }
 
@@ -152,7 +151,6 @@ public class GithubApiRestControllerTest {
                 .andExpect(jsonPath("$[0].repo.id", is(event1.getRepo().getId().intValue())))
                 .andExpect(jsonPath("$[0].repo.name", is(event1.getRepo().getName())))
                 .andExpect(jsonPath("$[0].repo.url", is(event1.getRepo().getUrl())))
-                //.andExpect(jsonPath("$[0].created_at", is(event1.getCreated_at())))
                 .andExpect(jsonPath("$[0].type", is(event1.getType())));
 
     }
@@ -177,7 +175,8 @@ public class GithubApiRestControllerTest {
                 .andExpect(jsonPath("$[2].avatar_url", is(actor3.getAvatar_url())));
     }
 
-    /*@Test
-    public void deleteAllEvents() {
-    }*/
+    @Test
+    public void deleteAllEvents() throws Exception {
+        mvc.perform(delete("/erase")).andExpect(status().isOk());
+    }
 }
