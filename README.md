@@ -12,3 +12,13 @@ The project exposes rest api's with Spring Rest.
 To test or use this project simply clone and run
 
 **mvn spring-boot:run**
+
+To test the application unit tests run
+
+**mvn test**
+
+The application is also added Swagger support.
+To check the api access the following url when the application is running.
+
+
+[http://localhost:8080/swagger-ui.html#/github-api-rest-controller](http://localhost:8080/swagger-ui.html#/github-api-rest-controller)
