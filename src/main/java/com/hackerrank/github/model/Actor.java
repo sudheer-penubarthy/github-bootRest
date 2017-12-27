@@ -12,6 +12,7 @@ public class Actor  implements Serializable {
     @Id
     private Long id;
     private String login;
+    @Column(name = "avatar_url")
     private String avatar;
 
     public Actor() {

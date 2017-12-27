@@ -18,12 +18,11 @@ public class Repo implements Serializable{
     public Repo() {
     }
 
-    public Repo(Long id, String name, String url) {
+    public Repo(Long id, String name, String url){
         this.id = id;
         this.name = name;
         this.url = url;
     }
-
     public Long getId() {
         return id;
     }

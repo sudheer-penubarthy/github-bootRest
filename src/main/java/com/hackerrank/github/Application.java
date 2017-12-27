@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan(basePackages = {"com.hackerrank.github.model"} )
-@EnableJpaRepositories(basePackages = {"com.hackerrank.github.repository"})
+//@EnableJpaRepositories(basePackages = {"com.hackerrank.github.repository"})
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
